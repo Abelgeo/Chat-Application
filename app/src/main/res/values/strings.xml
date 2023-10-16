@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Chatter</string>
+    <string name="title_activity_splash">splash</string>
+</resources>
