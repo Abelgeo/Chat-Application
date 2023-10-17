@@ -37,11 +37,25 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
     public void onBindViewHolder(@NonNull UserAdapter.viewholder holder, int position) {
 
         Users users = usersArrayList.get(position);
+//newly added code
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(users.getUserId())){
-            holder.itemView.setVisibility(View.GONE);
+            // Find the index of the current user in the usersArrayList
+            int currentUserIndex = -1;
+            for (int i = 0; i < usersArrayList.size(); i++) {
+                if (usersArrayList.get(i).getUserId().equals(currentUserId)) {
+                    currentUserIndex = i;
+                    break;
+                }
+            }
+
+            // If the current user is found in the list, remove them
+            if (currentUserIndex != -1) {
+                usersArrayList.remove(currentUserIndex);
+            }
         }
-
+//end here
         holder.username.setText(users.userName);
         holder.userstatus.setText(users.status);
 
