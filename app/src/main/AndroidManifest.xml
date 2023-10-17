@@ -40,7 +40,7 @@
         <activity
             android:name=".splash"
             android:exported="true"
-            android:label="@string/title_activity_splash"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Chatter">
             <intent-filter>
