@@ -75,6 +75,7 @@
         android:src="@drawable/camera" />
 
     <ImageView
+        android:id="@+id/calling"
         android:layout_width="52dp"
         android:layout_height="39dp"
         android:layout_alignParentEnd="true"

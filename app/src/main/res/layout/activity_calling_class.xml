@@ -9,7 +9,7 @@
     tools:context=".calling_class">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/TextID"
         android:layout_width="245dp"
         android:layout_height="92dp"
         android:layout_marginTop="220dp"
@@ -17,13 +17,13 @@
         android:hint="Enter your ID"
         android:inputType="text"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/callLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/callLogin"
         android:layout_width="130dp"
         android:layout_height="69dp"
         android:text="LOGIN"

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     ArrayList<Users> usersArrayList;
     ImageView imglogout;
-    ImageView cambut, settingbut;
+    ImageView cambut, settingbut, calling;
     
 
     @Override
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         cambut = findViewById(R.id.camBut);
         settingbut = findViewById(R.id.settingBut);
+        calling = findViewById(R.id.calling);
 
         DatabaseReference reference = database.getReference().child("user");
 
@@ -115,6 +116,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,10);
+            }
+        });
+        calling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, calling_class.class);
+                startActivity(intent);
             }
         });
 
