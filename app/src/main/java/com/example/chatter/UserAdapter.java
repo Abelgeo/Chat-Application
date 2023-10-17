@@ -37,23 +37,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
     public void onBindViewHolder(@NonNull UserAdapter.viewholder holder, int position) {
 
         Users users = usersArrayList.get(position);
-//newly added code
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-            // Find the index of the current user in the usersArrayList
-            int currentUserIndex = -1;
-            for (int i = 0; i < usersArrayList.size(); i++) {
-                if (usersArrayList.get(i).getUserId().equals(currentUserId)) {
-                    currentUserIndex = i;
-                    break;
-                }
-            }
-
-            // If the current user is found in the list, remove them
-            if (currentUserIndex != -1) {
-                usersArrayList.remove(currentUserIndex);
-            }
+//newly added code// currently old one is here
+        if(FirebaseAuth.getInstance().getCurrentUser().getUid().equals(users.getUserId())){
+            holder.itemView.setVisibility(View.GONE);
         }
 //end here
         holder.username.setText(users.userName);
@@ -76,8 +62,22 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
 
     @Override
     public int getItemCount() {
+        //new code
+        int count = usersArrayList.size();
 
-        return usersArrayList.size();
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            // Check if the current user is in the list
+            for (Users user : usersArrayList) {
+                if (user.getUserId().equals(currentUserId)) {
+                    count--; // Reduce the count by 1 if the current user is in the list
+                    break;
+                }
+            }
+        }
+
+        return count;
+        //till here
     }
 
     public static class viewholder extends RecyclerView.ViewHolder {
